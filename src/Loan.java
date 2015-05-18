@@ -1,10 +1,10 @@
-//U10116048 楊明璋 HW814.4 修改的LOAN CLASS
+//U10116048 楊明璋 HW8_14_4 修改的LOAN CLASS
 public class Loan {
   private double annualInterestRate;
   private int numberOfYears;
   private double loanAmount;
   private java.util.Date loanDate;
-
+  
   /** Default constructor */
   public Loan() {
     this(2.5, 1, 1000);
@@ -26,9 +26,15 @@ public class Loan {
     return annualInterestRate;
   }
 
-  /** Set a new annualInterestRate */
-  public void setAnnualInterestRate(double annualInterestRate) {
-    this.annualInterestRate = annualInterestRate;
+  /** Set a new annualInterestRate 加入丟出例外功能 */
+  public void setAnnualInterestRate(double annualInterestRate)throws inputException {
+    //條件
+	  if(annualInterestRate<=0){
+		  throw new inputException();
+	  }else{
+		  this.annualInterestRate = annualInterestRate;
+	  }
+	  
   }
 
   /** Return numberOfYears */
@@ -36,9 +42,15 @@ public class Loan {
     return numberOfYears;
   }
 
-  /** Set a new numberOfYears */
-  public void setNumberOfYears(int numberOfYears) {
-    this.numberOfYears = numberOfYears;
+  /** Set a new numberOfYears 加入丟出例外功能 */
+  public void setNumberOfYears(int numberOfYears)throws inputException {
+	 //條件
+	  if(numberOfYears<=0){
+		  throw new inputException();
+	  }else{
+		   this.numberOfYears = numberOfYears;
+	  }
+	 
   }
 
   /** Return loanAmount */
@@ -46,9 +58,18 @@ public class Loan {
     return loanAmount;
   }
 
-  /** Set a newloanAmount */
-  public void setLoanAmount(double loanAmount) {
-    this.loanAmount = loanAmount;
+  /** Set a newloanAmount 加入丟出例外功能 */
+  public void setLoanAmount(double loanAmount)throws inputException {
+    //條件
+	  if(loanAmount<=0){
+		  //輸入小於等於0，就丟出例外
+		  throw new inputException();
+	  }else{
+		  this.loanAmount = loanAmount;
+	  }
+	  
+	  
+    
   }
 
   /** Find monthly payment */
@@ -69,4 +90,8 @@ public class Loan {
   public java.util.Date getLoanDate() {
     return loanDate;
   }
+}
+/*自定義例外*/
+class inputException extends Exception{
+	//因為有繼承，所以具有基本的"例外"功能
 }
